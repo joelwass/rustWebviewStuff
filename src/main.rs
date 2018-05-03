@@ -5,24 +5,35 @@ use web_view::*;
 fn main() {
     let size = (700, 400);
     let resizable = true;
-    let debug = false;
+    let debug = true;
     let titlebar_transparent = true;
     let frontend_cb = |_webview: &mut _, _arg: &_, _userdata: &mut _| {};
     let userdata = ();
 
     let html = format!(r#"
+    <!DOCTYPE html>
     <html>
-        <head>
-        <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
-        <style>{css}</style>
-        </head>
-        <body>
-        <script>{js}</script>
-        </body>
+
+    <head>
+
+    <title>Realtime communication with WebRTC</title>
+    <style>{css}</style>
+    </head>
+
+    <body>
+
+    <h1>Realtime communication with WebRTC</h1>
+
+    <script>{snake}</script>
+    </script></head><body><script type="text/javascript">Elm.Main.fullscreen()</script>
+    </body>
+
     </html>
+
     "#,
-    css = r#"body { background: #1d1f21; }"#,
-    js = include_str!("../www/dist.js"));
+    css = include_str!("../www/min.css"),
+    snake = include_str!("../www/snake.js"));
+    // js = include_str!("../www/dist.js"));
 
     run(
         "",
